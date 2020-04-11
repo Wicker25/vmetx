@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NetworkTracer - Example</title>
+  </head>
+  <body>
+    <video id="video-player" width="400" controls>
+      Your browser does not support HTML5 video.
+    </video>
+    <script type="application/javascript" src="/dist/vmetx.iife.js"></script>
+    <script type="application/javascript">
+      (function() {
+        new vmetx.NetworkTracer({
+          serverUrl: 'ws://127.0.0.1:8085/',
+          targetOrigins: ['https://test-streams.mux.dev'],
+          fileTypes: ['m3u8', 'ts']
+        });
+      })();
+    </script>
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script type="application/javascript">
+      (function() {
+        var videoElement = document.getElementById('video-player');
+
+        var hls = new Hls();
+        hls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');
+        hls.attachMedia(videoElement);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          video.play();
+        });
+      })();
+    </script>
+  </body>
+</html>

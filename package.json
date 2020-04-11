@@ -1,0 +1,44 @@
+{
+  "name": "vmetx",
+  "version": "0.1.0-alpha1",
+  "author": "wicker25@gmail.com",
+  "license": "MIT",
+  "main": "./dist/vmetx.js",
+  "scripts": {
+    "clean": "rm -f dist/*.js",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prettify": "prettier --single-quote --write './*.ts' 'src/**/*.ts'",
+    "server": "node dist/vmetx-server.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "yarn prettify"
+    ]
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-typescript": "^4.0.0",
+    "@types/hls.js": "^0.12.6",
+    "@types/node": "^13.11.0",
+    "@types/socket.io": "^2.1.4",
+    "@types/socket.io-client": "^1.4.32",
+    "husky": "^4.2.3",
+    "lint-staged": "10.0.8",
+    "prettier": "^1.19.1",
+    "rollup": "^2.0.6",
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "influx": "^5.5.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  }
+}

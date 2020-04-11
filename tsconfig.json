@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "lib": ["es5", "es6", "dom"],
+    "target": "es5",
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

@@ -1,0 +1,7 @@
+.idea/
+node_modules/
+dist/*
+!dist/.gitkeep
+docker/*
+!docker/chronograf/.gitkeep
+!docker/influxdb/.gitkeep
