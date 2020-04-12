@@ -2,6 +2,7 @@
 node_modules/
 dist/*
 !dist/.gitkeep
-docker/*
+docker/chronograf/*
 !docker/chronograf/.gitkeep
+docker/influxdb/*
 !docker/influxdb/.gitkeep
