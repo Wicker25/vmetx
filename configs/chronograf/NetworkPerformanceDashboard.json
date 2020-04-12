@@ -9,15 +9,15 @@
 		}
 	},
 	"dashboard": {
-		"id": "5",
+		"id": "1",
 		"cells": [
 			{
-				"i": "fde7bd9d-1fe1-4705-ba81-011932a73ec5",
+				"i": "9af88a6a-2e8e-4203-adbe-fed29f7dd1cc",
 				"x": 0,
 				"y": 3,
 				"w": 4,
 				"h": 3,
-				"name": "time to first byte by hostname",
+				"name": "Time to first byte by hostname",
 				"queries": [
 					{
 						"query": "SELECT mean(\"waitingTime\") AS \"mean_waitingTime\" FROM \"vmetx\".\"autogen\".\"network\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY \"hostname\" FILL(null)",
@@ -136,11 +136,11 @@
 				"note": "",
 				"noteVisibility": "default",
 				"links": {
-					"self": "/chronograf/v1/dashboards/5/cells/fde7bd9d-1fe1-4705-ba81-011932a73ec5"
+					"self": "/chronograf/v1/dashboards/1/cells/9af88a6a-2e8e-4203-adbe-fed29f7dd1cc"
 				}
 			},
 			{
-				"i": "c99c9a76-e2ea-4012-8ddf-ce41929bcf04",
+				"i": "00edbd33-a39d-4167-9b6e-0b2d67c3a6dd",
 				"x": 0,
 				"y": 0,
 				"w": 4,
@@ -267,11 +267,11 @@
 				"note": "",
 				"noteVisibility": "default",
 				"links": {
-					"self": "/chronograf/v1/dashboards/5/cells/c99c9a76-e2ea-4012-8ddf-ce41929bcf04"
+					"self": "/chronograf/v1/dashboards/1/cells/00edbd33-a39d-4167-9b6e-0b2d67c3a6dd"
 				}
 			},
 			{
-				"i": "a889564e-5511-4511-945c-de0656b54c66",
+				"i": "05ed67fb-e05f-4074-b9c4-73443f4de73f",
 				"x": 4,
 				"y": 0,
 				"w": 4,
@@ -398,11 +398,11 @@
 				"note": "",
 				"noteVisibility": "default",
 				"links": {
-					"self": "/chronograf/v1/dashboards/5/cells/a889564e-5511-4511-945c-de0656b54c66"
+					"self": "/chronograf/v1/dashboards/1/cells/05ed67fb-e05f-4074-b9c4-73443f4de73f"
 				}
 			},
 			{
-				"i": "2e082cdb-b34b-4c84-936e-d2bab2f5939c",
+				"i": "bcf7b442-b74e-40d6-b90a-9b2a75fa7e11",
 				"x": 8,
 				"y": 0,
 				"w": 4,
@@ -529,7 +529,135 @@
 				"note": "",
 				"noteVisibility": "default",
 				"links": {
-					"self": "/chronograf/v1/dashboards/5/cells/2e082cdb-b34b-4c84-936e-d2bab2f5939c"
+					"self": "/chronograf/v1/dashboards/1/cells/bcf7b442-b74e-40d6-b90a-9b2a75fa7e11"
+				}
+			},
+			{
+				"i": "ad9a7df0-8e41-42d9-a626-c37602cc30e0",
+				"x": 4,
+				"y": 3,
+				"w": 4,
+				"h": 3,
+				"name": "Time to first byte by country",
+				"queries": [
+					{
+						"query": "SELECT mean(\"waitingTime\") AS \"mean_waitingTime\" FROM \"vmetx\".\"autogen\".\"network\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY \"country\" FILL(null)",
+						"queryConfig": {
+							"database": "vmetx",
+							"measurement": "network",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_waitingTime",
+									"args": [
+										{
+											"value": "waitingTime",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": [
+									"country"
+								]
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": false
+					},
+					{
+						"internalName": "network.mean_waitingTime",
+						"displayName": "Fime to first byte",
+						"visible": true
+					},
+					{
+						"internalName": "country",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/ad9a7df0-8e41-42d9-a626-c37602cc30e0"
 				}
 			}
 		],
@@ -537,9 +665,9 @@
 		"name": "Network Performance",
 		"organization": "default",
 		"links": {
-			"self": "/chronograf/v1/dashboards/5",
-			"cells": "/chronograf/v1/dashboards/5/cells",
-			"templates": "/chronograf/v1/dashboards/5/templates"
+			"self": "/chronograf/v1/dashboards/1",
+			"cells": "/chronograf/v1/dashboards/1/cells",
+			"templates": "/chronograf/v1/dashboards/1/templates"
 		}
 	}
 }
