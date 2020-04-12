@@ -17,8 +17,8 @@ services:
   influxdb:
     image: influxdb:latest
     volumes:
-      - ./docker-compose/influxdb/data:/var/lib/influxdb
-      - ./docker-compose/influxdb/config/:/etc/influxdb/
+      - ./containers/influxdb/data:/var/lib/influxdb
+      - ./containers/influxdb/config/:/etc/influxdb/
     ports:
       - '8086:8086'
       - '8082:8082'
@@ -32,7 +32,7 @@ services:
   chronograf:
     image: chronograf:latest
     volumes:
-      - ./docker-compose/chronograf/data/:/var/lib/chronograf/
+      - ./containers/chronograf/data/:/var/lib/chronograf/
     ports:
       - '8888:8888'
     networks:
