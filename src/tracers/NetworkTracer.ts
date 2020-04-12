@@ -60,7 +60,6 @@ export class NetworkTracer {
 
   private buildMetrics(resourceTiming: ResourceTiming): NetworkMetricsData {
     const {
-      nextHopProtocol,
       initiatorType,
       startTime,
       redirectStart,
@@ -75,10 +74,12 @@ export class NetworkTracer {
       responseEnd
     } = resourceTiming;
 
+    const { protocol, hostname } = this.getResourceTimingURL(resourceTiming);
+
     return {
       initiatorType,
-      protocol: nextHopProtocol,
-      hostname: this.getResourceTimingHostname(resourceTiming),
+      protocol,
+      hostname,
       redirectTime: redirectEnd - redirectStart,
       dnsLookupTime: domainLookupEnd - domainLookupStart,
       connectionTime: connectEnd - connectStart,
@@ -89,8 +90,8 @@ export class NetworkTracer {
     };
   }
 
-  private getResourceTimingHostname(resourceTiming: ResourceTiming) {
-    return new URL(resourceTiming.name).hostname;
+  private getResourceTimingURL(resourceTiming: ResourceTiming) {
+    return new URL(resourceTiming.name);
   }
 
   private getResourceTimings(): ResourceTiming[] {
