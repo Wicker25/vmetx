@@ -11,7 +11,12 @@ export default [
       name: 'vmetx-server',
       file: './dist/vmetx-server.js'
     },
-    plugins: [typescript({ module: 'commonjs' })]
+    plugins: [
+      typescript({
+        module: 'commonjs',
+        target: 'es2017'
+      })
+    ]
   },
   {
     input: 'src/tracers/main.ts',
