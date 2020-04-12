@@ -7,12 +7,18 @@ import * as geoip from 'geoip-lite';
 const httpServer = createServer();
 const io = SocketIO(httpServer);
 
+const INFLUXDB_ADDRESS = process.env.INFLUXDB_ADDRESS || '127.0.0.1';
+const INFLUXDB_PORT = parseInt(String(process.env.INFLUXDB_PORT)) || 8086;
+const INFLUXDB_DB = process.env.INFLUXDB_DB || 'vmetx';
+const INFLUXDB_USER = process.env.INFLUXDB_USER || 'admin';
+const INFLUXDB_PASSWORD = process.env.INFLUXDB_PASSWORD || 'password';
+
 const influx = new InfluxDB({
-  host: '127.0.0.1',
-  port: 8086,
-  database: 'vmetx',
-  username: 'admin',
-  password: 'password',
+  host: INFLUXDB_ADDRESS,
+  port: INFLUXDB_PORT,
+  database: INFLUXDB_DB,
+  username: INFLUXDB_USER,
+  password: INFLUXDB_PASSWORD,
   schema: [
     {
       measurement: 'network',

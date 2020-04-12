@@ -8,8 +8,7 @@
     "clean": "rm -f dist/*.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "prettify": "prettier --single-quote --write './*.ts' 'src/**/*.ts'",
-    "server": "node dist/vmetx-server.js"
+    "prettify": "prettier --single-quote --write './*.ts' 'src/**/*.ts'"
   },
   "husky": {
     "hooks": {

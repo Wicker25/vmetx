@@ -1,10 +1,24 @@
 version: '3'
 services:
+  vmetx-server:
+    build:
+      context: ./
+      dockerfile: ./docker/vmex-server/Dockerfile
+    ports:
+      - '8085:8085'
+    networks:
+      - internal-network
+    environment:
+      INFLUXDB_ADDRESS: influxdb
+      INFLUXDB_PORT: '8086'
+      INFLUXDB_DB: vmetx
+      INFLUXDB_USER: admin
+      INFLUXDB_PASSWORD: password
   influxdb:
     image: influxdb:latest
     volumes:
-      - ./docker/influxdb/data:/var/lib/influxdb
-      - ./docker/influxdb/config/:/etc/influxdb/
+      - ./docker-compose/influxdb/data:/var/lib/influxdb
+      - ./docker-compose/influxdb/config/:/etc/influxdb/
     ports:
       - '8086:8086'
       - '8082:8082'
@@ -18,7 +32,7 @@ services:
   chronograf:
     image: chronograf:latest
     volumes:
-      - ./docker/chronograf/data/:/var/lib/chronograf/
+      - ./docker-compose/chronograf/data/:/var/lib/chronograf/
     ports:
       - '8888:8888'
     networks:
