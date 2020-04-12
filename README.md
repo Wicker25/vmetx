@@ -51,6 +51,10 @@ new vmetx.NetworkTracer({
 });
 ```
 
+**Note**: your targets MUST set the response header
+[Timing-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin)
+to permit the tracer to see the timing detail.
+
 ## Authors
 
 - **Giacomo Trudu** - [Wicker25](https://github.com/Wicker25)
