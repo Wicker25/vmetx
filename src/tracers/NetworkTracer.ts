@@ -10,7 +10,7 @@ export interface NetworkMetricsData extends MetricsData {
   secureConnectionHandshakeTime: Timer;
   waitingTime: Timer;
   receivingTime: Timer;
-  requestTime: Timer;
+  timeToFirstByte: Timer;
 }
 
 export interface NetworkTracerOptions {
@@ -70,6 +70,7 @@ export class NetworkTracer {
       connectStart,
       secureConnectionStart,
       connectEnd,
+      requestStart,
       responseStart,
       responseEnd
     } = resourceTiming;
@@ -84,7 +85,7 @@ export class NetworkTracer {
       secureConnectionHandshakeTime: connectEnd - secureConnectionStart,
       waitingTime: responseStart - startTime,
       receivingTime: responseEnd - responseStart,
-      requestTime: responseEnd - startTime
+      timeToFirstByte: responseStart - requestStart
     };
   }
 

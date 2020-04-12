@@ -22,7 +22,7 @@ const influx = new InfluxDB({
         secureConnectionHandshakeTime: FieldType.INTEGER,
         waitingTime: FieldType.INTEGER,
         receivingTime: FieldType.INTEGER,
-        requestTime: FieldType.INTEGER
+        timeToFirstByte: FieldType.INTEGER
       },
       tags: ['initiatorType', 'protocol', 'hostname']
     }
@@ -43,7 +43,7 @@ io.on('connection', socket => {
       secureConnectionHandshakeTime,
       waitingTime,
       receivingTime,
-      requestTime
+      timeToFirstByte
     } = data;
 
     console.log('> metrics: ' + JSON.stringify(data));
@@ -58,7 +58,7 @@ io.on('connection', socket => {
           secureConnectionHandshakeTime,
           waitingTime,
           receivingTime,
-          requestTime
+          timeToFirstByte
         },
         tags: { initiatorType, protocol, hostname }
       }
