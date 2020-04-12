@@ -2,6 +2,7 @@ import { createServer } from 'http';
 
 import * as SocketIO from 'socket.io';
 import { InfluxDB, FieldType } from 'influx';
+import * as geoip from 'geoip-lite';
 
 const httpServer = createServer();
 const io = SocketIO(httpServer);
@@ -24,13 +25,17 @@ const influx = new InfluxDB({
         receivingTime: FieldType.INTEGER,
         timeToFirstByte: FieldType.INTEGER
       },
-      tags: ['initiatorType', 'protocol', 'hostname']
+      tags: ['initiatorType', 'protocol', 'hostname', 'country']
     }
   ]
 });
 
 io.on('connection', socket => {
-  console.log('client connected');
+  const address = socket.handshake.address;
+  console.log('New connection from ' + address);
+
+  const ipLooup = geoip.lookup(address);
+  const country = ipLooup ? ipLooup.country : 'none';
 
   socket.on('metrics', async ({ name, data }) => {
     const {
@@ -46,8 +51,6 @@ io.on('connection', socket => {
       timeToFirstByte
     } = data;
 
-    console.log('> metrics: ' + JSON.stringify(data));
-
     await influx.writePoints([
       {
         measurement: 'network',
@@ -60,7 +63,7 @@ io.on('connection', socket => {
           receivingTime,
           timeToFirstByte
         },
-        tags: { initiatorType, protocol, hostname }
+        tags: { initiatorType, protocol, hostname, country }
       }
     ]);
   });
