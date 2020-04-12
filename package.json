@@ -6,7 +6,7 @@
   "main": "./dist/vmetx.js",
   "scripts": {
     "clean": "rm -f dist/*.js",
-    "build": "rollup -c",
+    "build": "rollup -c && docker-compose build",
     "dev": "rollup -c -w",
     "prettify": "prettier --single-quote --write './*.ts' 'src/**/*.ts'"
   },
