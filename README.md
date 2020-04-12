@@ -65,4 +65,4 @@ participated in this project.
 
 ## License
 
-_VMetX_ is [MIT licensed](https://github.com/wicker25/vmetx/blob/master/LICENSE).
+_VMetX_ is [MIT licensed](https://github.com/Wicker25/vmetx/blob/master/LICENSE).
