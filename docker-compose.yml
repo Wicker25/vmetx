@@ -28,7 +28,7 @@ services:
       INFLUXDB_DB: vmetx
       INFLUXDB_ADMIN_USER: admin
       INFLUXDB_ADMIN_PASSWORD: password
-      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+      INFLUXDB_HTTP_AUTH_ENABLED: 'true'
   chronograf:
     image: chronograf:latest
     volumes:
